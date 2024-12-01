@@ -1,2 +1,27 @@
 .env
 __pycache__/
+.gitignore
+migrations/
+# Virtual environment
+venv/
+
+# Byte-compiled / optimized / compiled Python files
+*.py[cod]
+*.pyo
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Logs and debug
+*.log
+debug.log
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# Database files
+*.sqlite3
+*.db

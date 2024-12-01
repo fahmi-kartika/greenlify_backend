@@ -23,7 +23,7 @@ def getMe():
     return AdminsController.get_me()
 
 @app.route('/api/admin', methods=['GET', 'POST'])
-# @jwt_required()
+@jwt_required()
 def admins():
     if request.method == 'GET':
         return AdminsController.indexAdmin()
