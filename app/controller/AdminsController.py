@@ -212,6 +212,9 @@ def loginAdmin():
         password = request.form.get('password') or request.json.get('password')
         remember_me = request.form.get('remember_me') or request.json.get('remember_me')
 
+        if remember_me is None:
+            remember_me = False
+
         if not isinstance(remember_me, bool):
             return response.badRequest([], 'Nilai remember_me harus berupa boolean')
 
@@ -266,30 +269,3 @@ def getMe():
         except Exception as e:
             print(e)
             return response.serverError([],"Gagal mengambil data admin")
-
-def defaultAdmin():
-    try:
-        default_admin = Admins.query.filter_by(email='admin1@gmail.com').first()
-
-        if os.getenv('FLASK_ENV') == 'production':
-            return response.forbidden([], "Tidak dapat membuat admin default di lingkungan produksi.")
-
-        if default_admin:
-            return response.success([], "Admin default sudah ada. Tidak perlu ditambah lagi.")
-
-        admin = Admins(
-            name="Admin",
-            email="admin1@gmail.com",
-            phone_number="1234567890",
-            gender="Laki-Laki"
-        )
-
-        admin.setPassword('14141414')
-        db.session.add(admin)
-        db.session.commit()
-
-        return response.created([], "Akun admin default berhasil dibuat.")
-
-    except Exception as e:
-        print(e)
-        return response.serverError([], "Terjadi kesalahan saat membuat admin default.")

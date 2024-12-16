@@ -96,7 +96,6 @@ def detailArticle(id):
                 'img_file': article.img_file,
                 'content': article.content,
                 'views': article.views,
-                'img_file': article.img_file,
                 'created_by': article.admin.name,
                 'created_at': article.created_at,
                 'updated_at': article.updated_at
